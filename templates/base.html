@@ -1,0 +1,5 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>My To-Do</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"><script defer src="{{ url_for('static', filename='validation.js') }}"></script></head>
+<body><main><header><a class="brand" href="{{ url_for('home') }}">My To-Do</a>{% if session.get('user_id') %}<div class="account"><span>Hi, {{ session['name'] }}</span><form method="post" action="{{ url_for('logout') }}"><input type="hidden" name="csrf_token" value="{{ session['csrf_token'] }}"><button class="secondary">Log out</button></form></div>{% endif %}</header>
+{% for message in get_flashed_messages() %}<p class="success" role="status">{{ message }}</p>{% endfor %}
+{% block content %}{% endblock %}<footer>Database Lab 2 · Login &amp; To-Do</footer></main></body></html>
